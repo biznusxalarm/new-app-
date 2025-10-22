@@ -5,6 +5,10 @@ import 'app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: '.env');
+  try {
+    await dotenv.load(fileName: '.env');
+  } catch (_) {
+    // The app falls back to default URLs when .env is absent.
+  }
   runApp(const ShopApp());
 }
